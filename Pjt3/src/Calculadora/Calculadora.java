@@ -12,9 +12,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Calculadora {
-
-    private void operacaoBasica(float num){
-        Scanner ler = new Scanner(System.in);
+    final Scanner ler = new Scanner(System.in);
+    private void MetodoOperacaoBasica(int num){
         OperacaoBasica operacaoBasica = new OperacaoBasica();
         float resultado;
         OperacaoBasica opBas = new OperacaoBasica();
@@ -39,10 +38,32 @@ public class Calculadora {
             System.out.println("Número inválido");
     }
 
-//    private void ()
-
-
-
+    private void MetodoOutrasOperacaoes(int num){
+        OutrasOperacoes outrasOperacoes = new OutrasOperacoes();
+        if(num == 1) {
+            System.out.println("Digite um 1o numero para a exponeciação:");
+            outrasOperacoes.setNum1(ler.nextFloat());
+            System.out.println("Digite um 2o numero:");
+            outrasOperacoes.setNum2(ler.nextFloat());
+            System.out.println("Exponenciação: " + outrasOperacoes.exponenciacao() +"\n");
+        }
+        else if(num == 2){
+            System.out.println("Digite um 1 numero para a raiz:");
+            outrasOperacoes.setNum1(ler.nextFloat());
+            System.out.println("Raiz quadrada: " + outrasOperacoes.raiz() + "\n");
+        }
+        else if(num == 3){
+            System.out.println("Digite o valor:");
+            float value = ler.nextFloat();
+            System.out.println("Digite o valor da porcentagem:");
+            float value1 = ler.nextFloat();
+            OutrasOperacoes outrasOperacoes1 = new OutrasOperacoes(value, value1);
+            System.out.printf("Porcentagem: %.2f\n",outrasOperacoes1.porcentagem());
+        }
+        else{
+            System.out.println("Valor inválido!");
+        }
+    }
     public static void main(String[] args) throws ParseException {
         float num1, num2, resultado=0;
         Calculadora t = new Calculadora();
@@ -72,21 +93,16 @@ public class Calculadora {
                             "\n4 - Divisão");
                     opcao.add(1, ler.nextInt());
                     switch (opcao.get(1)) {
-                        case 1 -> {
-                            t.operacaoBasica(1);
-                            }
-                        case 2 -> {
-                            t.operacaoBasica(2);
-                        }
-                        case 3 -> {
-                            t.operacaoBasica(3);
-                            }
-                        case 4 -> {
-                            t.operacaoBasica(4);
-                        }
-                        default -> {
-                            t.operacaoBasica(0);
-                        }
+                        case 1 ->
+                            t.MetodoOperacaoBasica(1);
+                        case 2 ->
+                            t.MetodoOperacaoBasica(2);
+                        case 3 ->
+                            t.MetodoOperacaoBasica(3);
+                        case 4 ->
+                            t.MetodoOperacaoBasica(4);
+                        default ->
+                            t.MetodoOperacaoBasica(0);
                     }
                     System.out.println("Você deseja continuar?\n1 - Voltar para o menu inicial\n6 - Sair");
                     int sair = ler.nextInt();
@@ -94,9 +110,6 @@ public class Calculadora {
                         loop = false;
                     }
                 }
-
-                //Verificacao Outras operacoes
-
                 else if(opcao.get(0) == 2){
                     System.out.println("Digite um numero para as outras operações:" +
                             "\n1 - Exponenciação " +
@@ -104,35 +117,13 @@ public class Calculadora {
                             "\n3 - Porcenatagem");
                     opcao.add(1, ler.nextInt());
                     switch (opcao.get(1)){
-                        case 1 -> {
-                            double res;
-                            System.out.println("Digite a base:");
-                            num1 = ler.nextFloat();
-                            System.out.println("Digite o expoente:");
-                            num2 = ler.nextFloat();
-                            OutrasOperacoes OO = new OutrasOperacoes(0, 0, num1, num2);
-                            res = OO.exponenciacao();
-                            System.out.println("Exponenciação: " + res + "\n");
-                        }
-                        case 2 -> {
-                            double res;
-                            System.out.println("Digite um 1 numero para a raiz:");
-                            num1 = ler.nextFloat();
-                            OutrasOperacoes OO1 = new OutrasOperacoes(0, 0, num1, 0);
-                            res = OO1.raiz();
-                            System.out.println("Raiz quadrada: " + res + "\n");
-                        }
-                        case 3 -> {
-                            double res;
-                            System.out.println("Digite o valor:");
-                            num1 = ler.nextFloat();
-                            System.out.println("Digite a porcentagem:");
-                            num2 = ler.nextFloat();
-                            OutrasOperacoes OO2 = new OutrasOperacoes(num1, num2, 0, 0);
-                            res = OO2.porcentagem();
-                            System.out.printf("Porcentagem: %.2f\n",res);
-                        }
-                        default -> System.out.println("Operação inválida!");
+                        case 1 ->
+                            t.MetodoOutrasOperacaoes(1);
+                        case 2 ->
+                            t.MetodoOutrasOperacaoes(2);
+                        case 3 ->
+                            t.MetodoOutrasOperacaoes(3);
+                        default -> t.MetodoOutrasOperacaoes(0);
                     }
                     System.out.println("Você deseja continuar?\n1 - Voltar para o menu inicial\n6 - Sair");
                     int sair = ler.nextInt();
@@ -140,8 +131,6 @@ public class Calculadora {
                     loop = false;
                     }
                 }
-
-                //Verificacao conversor de moedas
 
                 else if (opcao.get(0) == 3){
                     System.out.println("Digite um numero para a Conversor Moeda:" +

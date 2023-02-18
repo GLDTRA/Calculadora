@@ -3,25 +3,48 @@ package OutrasOperacoes;
 import OperacoesBasicas.OperacaoBasica;
 
 public class OutrasOperacoes extends OperacaoBasica implements IOutrasOperacoes{
-    double num1, num2, num3, num4;
+    float num1, num2;
 
-    public OutrasOperacoes(float num1, float num2, float num3, float num4) {
+    public OutrasOperacoes(float num1, float num2){
         super(num1, num2);
-        this.num3 = num3;
-        this.num4 = num4;
     }
+
+    public OutrasOperacoes(float num1){}
+
+    public OutrasOperacoes(){}
 
     @Override
     public double exponenciacao(){
-        return Math.pow(num3, num4);
+        return Math.pow(num1, num2);
     }
 
     @Override
     public double raiz(){
-        return Math.sqrt(num3);
+        return Math.sqrt(num1);
     }
     @Override
     public double porcentagem(){
         return Multiplicar()/100;
+    }
+
+    @Override
+    public float getNum1() {
+        return num1;
+    }
+
+    @Override
+    public void setNum1(float num1) {
+        this.num1 = num1;
+    }
+
+
+    @Override
+    public float getNum2() {
+        return num2;
+    }
+
+    @Override
+    public void setNum2(float num2) {
+        this.num2 = num2;
     }
 }
