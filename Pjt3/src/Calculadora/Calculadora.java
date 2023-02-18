@@ -11,10 +11,41 @@ import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class TesteCalculadora {
+public class Calculadora {
+
+    private void operacaoBasica(float num){
+        Scanner ler = new Scanner(System.in);
+        OperacaoBasica operacaoBasica = new OperacaoBasica();
+        float resultado;
+        OperacaoBasica opBas = new OperacaoBasica();
+        System.out.println("Digite um 1o numero:");
+        opBas.setNum1(ler.nextFloat());
+        System.out.println("Digite um 2o numero:");
+        opBas.setNum2(ler.nextFloat());
+        if(num == 1){
+            opBas.Soma();
+            System.out.println("Número " + opBas.getNum1()+ " + " + opBas.getNum2() + " = " + opBas.Soma() + "\n");
+        }
+        else if(num == 2){
+            System.out.println("Número " + opBas.getNum1()+ " - " + opBas.getNum2() + " = " + opBas.Diminuir() + "\n");
+        }
+        else if(num == 3){
+            System.out.println("Número " + opBas.getNum1()+ " x " + opBas.getNum2() + " = " + opBas.Multiplicar() + "\n");
+        }
+        else if(num == 4){
+            System.out.println("Número " + opBas.getNum1()+ " + " + opBas.getNum2() + " = " + opBas.Dividir() + "\n");
+        }
+        else
+            System.out.println("Número inválido");
+    }
+
+//    private void ()
+
+
+
     public static void main(String[] args) throws ParseException {
         float num1, num2, resultado=0;
-
+        Calculadora t = new Calculadora();
         ArrayList<Integer> opcao = new ArrayList<>();
         boolean loop = true;
         opcao.add(0,0);
@@ -22,8 +53,6 @@ public class TesteCalculadora {
         System.out.println("\n**   Bem vindo!!   **\n\n**   A calculadora! :D  **\n\n");
         do{
             try{
-                //Verificacao se o array esta limpo
-
                 if(opcao.size() == 0){
                     System.out.println("Digite um número de 1, 2, 3, 4, 5 ou 6, sendo:\n\n1 - Operações básicas\n2 - Outras operações\n3 - Conversor Moeda\n4 - Áreas\n5 - Datas\n6 - Sair");
                     opcao.add(0, ler.nextInt());
@@ -44,42 +73,20 @@ public class TesteCalculadora {
                     opcao.add(1, ler.nextInt());
                     switch (opcao.get(1)) {
                         case 1 -> {
-                            System.out.println("Digite um 1o numero:");
-                            num1 = ler.nextFloat();
-                            System.out.println("Digite um 2o numero:");
-                            num2 = ler.nextFloat();
-                            OperacaoBasica opBas = new OperacaoBasica(num1, num2);
-                            resultado = opBas.Soma();
-                            System.out.println("Número " + num1 + " + " + num2 + " = " + resultado + "\n");
-                        }
+                            t.operacaoBasica(1);
+                            }
                         case 2 -> {
-                            System.out.println("Digite um 1o numero:");
-                            num1 = ler.nextFloat();
-                            System.out.println("Digite um 2o numero:");
-                            num2 = ler.nextFloat();
-                            OperacaoBasica OpBas = new OperacaoBasica(num1, num2);
-                            resultado = OpBas.Diminuir();
-                            System.out.println("Número " + num1 + " - " + num2 + " = " + resultado + "\n");
+                            t.operacaoBasica(2);
                         }
                         case 3 -> {
-                            System.out.println("Digite um 1o numero:");
-                            num1 = ler.nextFloat();
-                            System.out.println("Digite um 2o numero:");
-                            num2 = ler.nextFloat();
-                            OperacaoBasica OpBas1 = new OperacaoBasica(num1, num2);
-                            resultado = OpBas1.Multiplicar();
-                            System.out.println("Número " + num1 + " x " + num2 + " = " + resultado + "\n");
-                        }
+                            t.operacaoBasica(3);
+                            }
                         case 4 -> {
-                            System.out.println("Digite um 1o numero:");
-                            num1 = ler.nextFloat();
-                            System.out.println("Digite um 2o numero:");
-                            num2 = ler.nextFloat();
-                            OperacaoBasica OpBas2 = new OperacaoBasica(num1, num2);
-                            resultado = OpBas2.Dividir();
-                            System.out.println("Número " + num1 + " / " + num2 + " = " + resultado + "\n");
+                            t.operacaoBasica(4);
                         }
-                        default -> System.out.println("Operação inválida!");
+                        default -> {
+                            t.operacaoBasica(0);
+                        }
                     }
                     System.out.println("Você deseja continuar?\n1 - Voltar para o menu inicial\n6 - Sair");
                     int sair = ler.nextInt();
@@ -269,4 +276,6 @@ public class TesteCalculadora {
 
         System.out.println("\n**   Muito Obrigado por usar nosso programa!   **\n\n**   Até breve!   **");
     }
+
+
 }
