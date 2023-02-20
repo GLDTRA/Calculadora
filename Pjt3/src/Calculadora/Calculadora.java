@@ -67,7 +67,6 @@ public class Calculadora {
 
     private void MetodoConversorMoeda(int num){
         try{
-            float moeda;
             ConversorDeMoeda conversorDeMoeda = new ConversorDeMoeda();
             if(num == 1){
                 System.out.println("Digite quantidade de Reais:");
