@@ -1,33 +1,40 @@
 package Moeda;
 
+import OperacoesBasicas.OperacaoBasica;
+
 import java.lang.Math;
 
-public class ConversorDeMoeda {
-    private double moeda;
-
-    public ConversorDeMoeda(double reais) {
-        this.moeda = reais;
+public class ConversorDeMoeda extends OperacaoBasica {
+    private float moeda;
+    public ConversorDeMoeda(float moeda) {
+        super();
+        this.moeda = moeda;
     }
+    public ConversorDeMoeda(){}
 
     public double ConverterDolar(){
-
-        final double TaxaDolar = 5.16;
-        return moeda * TaxaDolar;
+        OperacaoBasica operacaoBasica = new OperacaoBasica(this.moeda, 5.16F);
+        return operacaoBasica.Multiplicar();
     }
     public double ConverterEuro(){
-        final double TaxaEuro = 5.57;
-        return moeda * TaxaEuro;
+       OperacaoBasica operacaoBasica = new OperacaoBasica(this.moeda, 5.57F);
+       return operacaoBasica.Multiplicar();
     }
     public double ConverterReaisDolar(){
-        final double TaxaEuro = 5.16;
-        return moeda / TaxaEuro;
+        OperacaoBasica operacaoBasica = new OperacaoBasica(this.moeda, 5.16F);
+        return operacaoBasica.Dividir();
+
     }
     public double ConverterReaisEuro(){
-        final double TaxaEuro = 5.57;
-        return moeda / TaxaEuro;
+        OperacaoBasica operacaoBasica = new OperacaoBasica(this.moeda, 5.57F);
+        return operacaoBasica.Dividir();
     }
 
-    double getMoeda() {return moeda;}
-    void  setReais(double moeda){this.moeda = moeda;
+    public double getMoeda() {
+        return moeda;
+    }
+
+    public void setMoeda(float moeda) {
+        this.moeda = moeda;
     }
 }

@@ -3,7 +3,6 @@ import Datas.CalculadoraDatas;
 import Moeda.ConversorDeMoeda;
 import OperacoesBasicas.OperacaoBasica;
 import OutrasOperacoes.OutrasOperacoes;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,54 +13,87 @@ import java.util.Scanner;
 public class Calculadora {
     final Scanner ler = new Scanner(System.in);
     private void MetodoOperacaoBasica(int num){
-        OperacaoBasica operacaoBasica = new OperacaoBasica();
-        float resultado;
-        OperacaoBasica opBas = new OperacaoBasica();
-        System.out.println("Digite um 1o numero:");
-        opBas.setNum1(ler.nextFloat());
-        System.out.println("Digite um 2o numero:");
-        opBas.setNum2(ler.nextFloat());
-        if(num == 1){
-            opBas.Soma();
-            System.out.println("Número " + opBas.getNum1()+ " + " + opBas.getNum2() + " = " + opBas.Soma() + "\n");
+        try {
+            OperacaoBasica opBas = new OperacaoBasica();
+            System.out.println("Digite um 1o numero:");
+            opBas.setNum1(ler.nextFloat());
+            System.out.println("Digite um 2o numero:");
+            opBas.setNum2(ler.nextFloat());
+            if (num == 1) {
+                opBas.Soma();
+                System.out.println("Número " + opBas.getNum1() + " + " + opBas.getNum2() + " = " + opBas.Soma() + "\n");
+            } else if (num == 2) {
+                System.out.println("Número " + opBas.getNum1() + " - " + opBas.getNum2() + " = " + opBas.Diminuir() + "\n");
+            } else if (num == 3) {
+                System.out.println("Número " + opBas.getNum1() + " x " + opBas.getNum2() + " = " + opBas.Multiplicar() + "\n");
+            } else if (num == 4) {
+                System.out.println("Número " + opBas.getNum1() + " + " + opBas.getNum2() + " = " + opBas.Dividir() + "\n");
+            } else
+                System.out.println("Número inválido");
+        }catch(InputMismatchException e){
+            System.err.println("\nExceção: " + e);
+            System.out.println("Tipagem inesperada, favor digitar um número inteiro!.");
+            System.out.println("Tente novamente!");
         }
-        else if(num == 2){
-            System.out.println("Número " + opBas.getNum1()+ " - " + opBas.getNum2() + " = " + opBas.Diminuir() + "\n");
-        }
-        else if(num == 3){
-            System.out.println("Número " + opBas.getNum1()+ " x " + opBas.getNum2() + " = " + opBas.Multiplicar() + "\n");
-        }
-        else if(num == 4){
-            System.out.println("Número " + opBas.getNum1()+ " + " + opBas.getNum2() + " = " + opBas.Dividir() + "\n");
-        }
-        else
-            System.out.println("Número inválido");
     }
 
     private void MetodoOutrasOperacaoes(int num){
-        OutrasOperacoes outrasOperacoes = new OutrasOperacoes();
-        if(num == 1) {
-            System.out.println("Digite um 1o numero para a exponeciação:");
-            outrasOperacoes.setNum1(ler.nextFloat());
-            System.out.println("Digite um 2o numero:");
-            outrasOperacoes.setNum2(ler.nextFloat());
-            System.out.println("Exponenciação: " + outrasOperacoes.exponenciacao() +"\n");
+        try{
+            OutrasOperacoes outrasOperacoes = new OutrasOperacoes();
+            if (num == 1) {
+                System.out.println("Digite um 1o numero para a exponenciação:");
+                outrasOperacoes.setNum1(ler.nextFloat());
+                System.out.println("Digite um 2o numero:");
+                outrasOperacoes.setNum2(ler.nextFloat());
+                System.out.println("Exponenciação: " + outrasOperacoes.exponenciacao() + "\n");
+            } else if (num == 2) {
+                System.out.println("Digite um 1 numero para a raiz:");
+                outrasOperacoes.setNum1(ler.nextFloat());
+                System.out.println("Raiz quadrada: " + outrasOperacoes.raiz() + "\n");
+            } else if (num == 3) {
+                System.out.println("Digite o valor:");
+                float value = ler.nextFloat();
+                System.out.println("Digite o valor da porcentagem:");
+                float value1 = ler.nextFloat();
+                OutrasOperacoes outrasOperacoes1 = new OutrasOperacoes(value, value1);
+                System.out.printf("Porcentagem: %.2f\n", outrasOperacoes1.porcentagem());
+            } else System.out.println("Valor inválido!");
+        }catch(InputMismatchException e){
+            System.err.println("\nExceção: " + e);
+            System.out.println("Tipagem inesperada, favor digitar um número inteiro!.");
+            System.out.println("Tente novamente!");
         }
-        else if(num == 2){
-            System.out.println("Digite um 1 numero para a raiz:");
-            outrasOperacoes.setNum1(ler.nextFloat());
-            System.out.println("Raiz quadrada: " + outrasOperacoes.raiz() + "\n");
-        }
-        else if(num == 3){
-            System.out.println("Digite o valor:");
-            float value = ler.nextFloat();
-            System.out.println("Digite o valor da porcentagem:");
-            float value1 = ler.nextFloat();
-            OutrasOperacoes outrasOperacoes1 = new OutrasOperacoes(value, value1);
-            System.out.printf("Porcentagem: %.2f\n",outrasOperacoes1.porcentagem());
-        }
-        else{
-            System.out.println("Valor inválido!");
+    }
+
+    private void MetodoConversorMoeda(int num){
+        try{
+            float moeda;
+            ConversorDeMoeda conversorDeMoeda = new ConversorDeMoeda();
+            if(num == 1){
+                System.out.println("Digite quantidade de Reais:");
+                conversorDeMoeda.setMoeda(ler.nextFloat());
+                System.out.printf("Dólar: %.2f\n" ,conversorDeMoeda.ConverterReaisDolar());
+            }
+            else if(num == 2){
+                System.out.println("Digite quantidade de Dólar:");
+                conversorDeMoeda.setMoeda(ler.nextFloat());
+                System.out.printf("Real: %.2f\n" ,conversorDeMoeda.ConverterDolar());
+            }
+            else if(num == 3){
+                System.out.println("Digite quantidade de Reais:");
+                conversorDeMoeda.setMoeda(ler.nextFloat());
+                System.out.printf("Euro: %.2f\n" ,conversorDeMoeda.ConverterReaisEuro());
+            }
+            else if(num == 4){
+                System.out.println("Digite quantidade de Euro:");
+                conversorDeMoeda.setMoeda(ler.nextFloat());
+                System.out.printf("Real: %.2f\n" ,conversorDeMoeda.ConverterEuro());
+            }
+            else System.out.println("Valor inválido!");
+        }catch(InputMismatchException e){
+            System.err.println("\nExceção: " + e);
+            System.out.println("Tipagem inesperada, favor digitar um número inteiro!.");
+            System.out.println("Tente novamente!");
         }
     }
     public static void main(String[] args) throws ParseException {
@@ -82,8 +114,6 @@ public class Calculadora {
                     System.out.println("Digite um número de 1, 2, 3, 4, 5 ou 6, sendo:\n\n1 - Operações básicas\n2 - Outras operações\n3 - Conversor Moeda\n4 - Áreas\n5 - Datas\n6 - Sair");//to do escrever
                     opcao.set(0, ler.nextInt());
                 }
-
-                //Verificacao se vai para Operacoes basicas
 
                 if(opcao.get(0) == 1){
                     System.out.println("Digite um numero para as operações matemáticas:" +
@@ -123,7 +153,8 @@ public class Calculadora {
                             t.MetodoOutrasOperacaoes(2);
                         case 3 ->
                             t.MetodoOutrasOperacaoes(3);
-                        default -> t.MetodoOutrasOperacaoes(0);
+                        default ->
+                                t.MetodoOutrasOperacaoes(0);
                     }
                     System.out.println("Você deseja continuar?\n1 - Voltar para o menu inicial\n6 - Sair");
                     int sair = ler.nextInt();
@@ -140,39 +171,15 @@ public class Calculadora {
                             "\n4 - Conversor de Euro para Real");
                     opcao.add(1, ler.nextInt());
                     switch(opcao.get(1)){
-                        case 1 -> {
-                            double res;
-                            System.out.println("Digite quantidade de Reais:");
-                            num1 = ler.nextFloat();
-                            ConversorDeMoeda moeda = new ConversorDeMoeda(num1);
-                            res = moeda.ConverterReaisDolar();
-                            System.out.printf("Dólar: %.2f\n" ,res);
-                        }
-                        case 2 -> {
-                            double res;
-                            System.out.println("Digite a quantidade de Dólares:");
-                            num1 = ler.nextFloat();
-                            ConversorDeMoeda moeda = new ConversorDeMoeda(num1);
-                            res = moeda.ConverterDolar();
-                            System.out.printf("Reais: %.2f\n" ,res);
-                        }
-                        case 3 -> {
-                            double res;
-                            System.out.println("Digite quantidade de Reais:");
-                            num1 = ler.nextFloat();
-                            ConversorDeMoeda moeda = new ConversorDeMoeda(num1);
-                            res = moeda.ConverterReaisEuro();
-                            System.out.printf("Euro: %.2f\n" ,res);
-                        }
-                        case 4 -> {
-                            double res;
-                            System.out.println("Digite um 1o numero:");
-                            num1 = ler.nextFloat();
-                            ConversorDeMoeda moeda = new ConversorDeMoeda(num1);
-                            res = moeda.ConverterEuro();
-                            System.out.printf("Reais: %.2f\n" ,res);
-                        }
-                        default -> System.out.println("Operação inválida!");
+                        case 1 ->
+                            t.MetodoConversorMoeda(1);
+                        case 2 ->
+                            t.MetodoConversorMoeda(2);
+                        case 3 ->
+                            t.MetodoConversorMoeda(3);
+                        case 4 ->
+                            t.MetodoConversorMoeda(4);
+                        default -> t.MetodoConversorMoeda(0);
                     }
                     System.out.println("Você deseja continuar?\n1 - Voltar para o menu inicial\n6 - Sair");
                     int sair = ler.nextInt();
@@ -180,9 +187,6 @@ public class Calculadora {
                     loop = false;
                     }
                 }
-
-                //Vericacao de areas
-
                 if(opcao.get(0) == 4){
                     System.out.println("Digite um número para os cálculos de área:" +
                             "\n1 - Área de triângulo" +
@@ -257,9 +261,6 @@ public class Calculadora {
                 System.out.println("Opção inválida.");
                 ler.nextLine();
                 System.out.println("Tente novamente.");
-            }
-            finally{
-                System.out.println("\n");
             }
         }while(loop);
 
