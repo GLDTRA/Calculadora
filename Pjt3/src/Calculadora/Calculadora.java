@@ -60,7 +60,7 @@ public class Calculadora {
             } else System.out.println("Valor inválido!");
         }catch(InputMismatchException e){
             System.err.println("\nExceção: " + e);
-            System.out.println("Tipagem inesperada, favor digitar um número inteiro!.");
+            System.out.println("Tipagem inesperada, favor digitar um número!");
             System.out.println("Tente novamente!");
         }
     }
@@ -91,7 +91,38 @@ public class Calculadora {
             else System.out.println("Valor inválido!");
         }catch(InputMismatchException e){
             System.err.println("\nExceção: " + e);
-            System.out.println("Tipagem inesperada, favor digitar um número inteiro!.");
+            System.out.println("Tipagem inesperada, favor digitar um número!");
+            System.out.println("Tente novamente!");
+        }
+    }
+
+    private void MetodoArea(int num){
+        try {
+            CalcularArea calcularArea = new CalcularArea();
+            if (num == 1) {
+                System.out.println("Digite a altura do triângulo: ");
+                calcularArea.setNum1(ler.nextFloat());
+                System.out.println("Digite a base do triângulo:");
+                calcularArea.setNum2(ler.nextFloat());
+                System.out.println("Um Triângulo com base " + calcularArea.getNum2() +
+                        " e altura " + calcularArea.getNum1() + " terá uma área de " + calcularArea.AreaTriangulo());
+            }
+            else if (num == 2) {
+                System.out.println("Digite a altura do retângulo: ");
+                calcularArea.setNum1(ler.nextFloat());
+                System.out.println("Digite a base do retângulo:");
+                calcularArea.setNum2(ler.nextFloat());
+                System.out.println("Um retângulo com base " + calcularArea.getNum2() +
+                        " e altura " + calcularArea.getNum1() + " terá uma área de " + calcularArea.AreaRetangulo());
+            }
+            else if(num == 3) {
+                System.out.println("Digite o raio do círculo:");
+                calcularArea.setNum1(ler.nextFloat());
+                System.out.println("Um círculo com raio " + calcularArea.getNum1() + " terá uma área de " + calcularArea.AreaCirculo());
+            } else System.out.println("Valor inválido!");
+        }catch(InputMismatchException e){
+            System.err.println("\nExceção: " + e);
+            System.out.println("Tipagem inesperada, favor digitar um número!.");
             System.out.println("Tente novamente!");
         }
     }
@@ -190,38 +221,16 @@ public class Calculadora {
                     System.out.println("Digite um número para os cálculos de área:" +
                             "\n1 - Área de triângulo" +
                             "\n2 - Área de retângulo" +
-                            "\n3 - Área de círculo" +
-                            "\n0 - Voltar ao menu anterior");
+                            "\n3 - Área de círculo");
                     opcao.add(1, ler.nextInt());
                     switch (opcao.get(1)) {
-                        case 1:
-                            CalcularArea calcAreaTriangulo = new CalcularArea();
-                            System.out.println("Digite a base do triângulo:");
-                            calcAreaTriangulo.setNum1(ler.nextFloat());
-                            System.out.println("Digite a altura do triângulo");
-                            calcAreaTriangulo.setNum2(ler.nextFloat());
-                            resultado = calcAreaTriangulo.AreaTriangulo();
-                            System.out.println("Um triângulo com base " + calcAreaTriangulo.getNum1() + " e altura " + calcAreaTriangulo.getNum2() + " terá uma área de " + resultado);
-                            break;
-                        case 2:
-                            CalcularArea calcAreaRetangulo = new CalcularArea();
-                            System.out.println("Digite a base do retângulo:");
-                            calcAreaRetangulo.setNum1(ler.nextFloat());
-                            System.out.println("Digite a altura do retângulo");
-                            calcAreaRetangulo.setNum2(ler.nextFloat());
-                            resultado = calcAreaRetangulo.AreaRetangulo();
-                            System.out.println("Um retângulo com base " + calcAreaRetangulo.getNum1() + " e altura " + calcAreaRetangulo.getNum2() + " terá uma área de " + resultado);
-                            break;
-                        case 3:
-                            CalcularArea calcAreaCirculo = new CalcularArea();
-                            System.out.println("Digite o raio do círculo:");
-                            calcAreaCirculo.setNum1(ler.nextFloat());
-                            resultado = calcAreaCirculo.AreaCirculo();
-                            System.out.println("Um círculo com raio " + calcAreaCirculo.getNum1() + " terá uma área de " + resultado);
-                            break;
-                        default:
-                            opcao.set(0, 7);
-                            break;
+                        case 1 ->
+                            t.MetodoArea(1);
+                        case 2 ->
+                            t.MetodoArea(2);
+                        case 3 ->
+                            t.MetodoArea(3);
+                        default -> t.MetodoArea(0);
                 }
                     System.out.println("Você deseja continuar?\n1 - Voltar para o menu inicial\n6 - Sair");
                     int sair = ler.nextInt();
