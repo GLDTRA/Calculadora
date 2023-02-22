@@ -49,6 +49,4 @@ public class CalculadoraDatas implements ICalculadoraDatas {
     public long diferencaDias() {
         return diferencaHoras() / 24;
     }
-
-
 }
