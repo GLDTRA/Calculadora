@@ -1,4 +1,4 @@
-# Calculadora, 
+# Calculadora
 
 utilizando apenas java e lógica de programação 
 
